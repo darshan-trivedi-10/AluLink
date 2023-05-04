@@ -52,7 +52,7 @@ const organizationSchema = new mongoose.Schema({
 
 const organization = mongoose.model('Organization', organizationSchema);
 
-module.exports = organization;
+export default organization;
 
 /*
 Program Type Options :
