@@ -1,12 +1,18 @@
 import express from 'express';
 
+
 const router = express.Router();
+import Validator from '../../middleware/validator.js';
+import { OrganizationController } from '../../controller/index.js';
+
+var organizationController = new OrganizationController();
+var validator = new Validator();
 
 
 // Auth - user , organization
 
-router.post('/organizations', registerOrganization);
-router.get('/organizations/:id', getOrganizationProfile);
-router.put('/organizations/:id', updateOrganizationProfile);
+router.post('/organizations',validator.OrganizationVerification, organizationController.registerOrganization);
+router.get('/organizations/:id', organizationController.getOrganizationProfile);
+router.put('/organizations/:id', organizationController.updateOrganizationProfile);
 
-
+export default router;
