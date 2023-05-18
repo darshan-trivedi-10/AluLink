@@ -16,7 +16,8 @@ const organizationSchema = new mongoose.Schema({
     },
     website: {
         type: String,
-        require: true
+        require: true,
+        unique:true
     },
     phoneNumber: {
         type: String
@@ -36,8 +37,9 @@ const organizationSchema = new mongoose.Schema({
         required: true,
     },
     isVerified: {
-        type: String,
-        required: true
+        type: Boolean,
+        default : false
+
     },
     admin: {
         name: { type: String, required: true },

@@ -1,4 +1,4 @@
-import OrganizationRepository from "./organization_repository";
+import OrganizationRepository from "./organization_repository.js";
 
 export {
     OrganizationRepository

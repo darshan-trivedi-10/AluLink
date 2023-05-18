@@ -1,4 +1,4 @@
-import OrganizationService from "./organization_service";
+import OrganizationService from "./organization_service.js";
 
 export {
     OrganizationService
