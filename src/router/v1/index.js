@@ -11,8 +11,8 @@ var validator = new Validator();
 
 // Auth - user , organization
 
-router.post('/organizations',validator.OrganizationVerification, organizationController.registerOrganization);
+router.post('/organizations', validator.OrganizationVerification, organizationController.registerOrganization);
 router.get('/organizations/:id', organizationController.getOrganizationProfile);
-router.put('/organizations/:id', organizationController.updateOrganizationProfile);
+router.put('/organizations/update', validator.OrganizationUpdateVerification, organizationController.updateOrganizationProfile);
 
 export default router;

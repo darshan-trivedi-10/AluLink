@@ -13,9 +13,9 @@ class CrudRepository {
         }
     }
 
-    async get(id) {
+    async get(data) {
         try {
-            const result = await this.model.findById(id);
+            const result = await this.model.findOne(data).select('-admin.password -isVerified');
             return result;
         } catch (error) {
             console.log("Something Went Wrong to get data in CRUD Repository");

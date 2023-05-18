@@ -7,7 +7,7 @@ class OrganizationService {
 
     async registerOrganization(data) {
         try {
-            const isAvailable = await organizationRepository.findOne({
+            const isAvailable = await organizationRepository.get({
                 "website": data.website
             });
             if (isAvailable) {
@@ -24,12 +24,24 @@ class OrganizationService {
     }
 
 
-    async getOrganizationProfile() {
-
+    async getOrganizationProfile(id) {
+        try {
+            const organizationData = await organizationRepository.get(id);
+            return organizationData;
+        } catch (error) {
+            console.log("Something went wrong while getting Organization Profile in Service Layer");
+            throw error;
+        }
     }
 
-    async updateOrganizationProfile() {
-
+    async updateOrganizationProfile(id, data) {
+        try {
+            const organizationData = await organizationRepository.update(id, data);
+            return organizationData;
+        } catch (error) {
+            console.log("Something went wrong while updating Organization Profile in Service Layer");
+            throw error;
+        }
     }
 }
 
