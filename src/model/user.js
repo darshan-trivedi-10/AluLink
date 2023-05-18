@@ -27,8 +27,16 @@ const userSchema = new mongoose.Schema({
     },
     colleges: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Organization'
+            college: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Organization'
+            },
+            startYear: {
+                type: Number
+            },
+            graduationYear: {
+                type: Number
+            }
         }
     ]
 });
