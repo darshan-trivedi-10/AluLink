@@ -18,7 +18,7 @@ class OrganizationController {
         } catch (error) {
             console.log("Error in creating Organization Controller");
             console.log(error);
-            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            return res.status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
                 message: error.message,
                 data: {},
                 success: false,

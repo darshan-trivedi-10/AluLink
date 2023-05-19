@@ -2,51 +2,51 @@ import mongoose from "mongoose";
 
 
 const organizationSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        require: true
-    },
-    location: {
-        type: String,
-        require: true
-    },
-    established: {
-        type: Date,
-        require: true
-    },
-    website: {
-        type: String,
-        require: true,
-        unique:true
-    },
-    phoneNumber: {
-        type: String
-    },
-    email: {
-        type: String
-    },
-    logo: {
-        type: String
-    },
-    description: {
-        type: String,
-        require: true
-    },
-    programType: {
-        type: String,
-        required: true,
-    },
-    isVerified: {
-        type: Boolean,
-        default : false
+  name: {
+    type: String,
+    require: true
+  },
+  location: {
+    type: String,
+    require: true
+  },
+  established: {
+    type: Date,
+    require: true
+  },
+  website: {
+    type: String,
+    require: true,
+    unique: true
+  },
+  phoneNumber: {
+    type: String
+  },
+  email: {
+    type: String
+  },
+  logo: {
+    type: String
+  },
+  description: {
+    type: String,
+    require: true
+  },
+  programType: {
+    type: String,
+    required: true,
+  },
+  isVerified: {
+    type: Boolean,
+    default: false
 
-    },
-    admin: {
-        name: { type: String, required: true },
-        email: { type: String, required: true },
-        password: { type: String, required: true },
-        phone: { type: String, required: true },
-    }
+  },
+  admin: {
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+    phone: { type: String, required: true },
+  }
 })
 
 

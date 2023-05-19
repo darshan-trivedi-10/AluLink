@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -16,7 +16,6 @@ const userSchema = new mongoose.Schema({
     },
     dateOfBirth: {
         type: Date,
-        required: true
     },
     headline: {
         type: String,
@@ -24,6 +23,10 @@ const userSchema = new mongoose.Schema({
     },
     phoneNumber: {
         type: String
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
     },
     colleges: [
         {

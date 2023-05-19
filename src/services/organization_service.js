@@ -2,7 +2,6 @@ import { OrganizationRepository } from "../repository/index.js";
 
 var organizationRepository = new OrganizationRepository();
 
-
 class OrganizationService {
 
     async registerOrganization(data) {

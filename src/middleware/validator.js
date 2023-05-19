@@ -2,6 +2,13 @@ import { StatusCodes } from 'http-status-codes'
 import Joi from 'joi';
 
 class Validator {
+
+    // Organization Validation
+
+    /*
+    * @use : Organization Validation while creating organization
+    * @author : Trivedi Darshan 
+    */
     async OrganizationVerification(req, res, next) {
         try {
             const organizationSchema = Joi.object({
@@ -24,7 +31,6 @@ class Validator {
             const organizationData = await organizationSchema.validateAsync(
                 req.body
             );
-            console.log("DBT : ", req.body)
             next();
         } catch (error) {
             console.log("Error in the Validation :(");
@@ -39,6 +45,10 @@ class Validator {
 
     }
 
+    /*
+    * @use : Organization Validation while updating organization details
+    * @author : Trivedi Darshan
+    */
     async OrganizationUpdateVerification(req, res, next) {
         try {
             const allowedProperties = ['name', 'location', 'established', 'website', 'phoneNumber', 'email', 'logo', 'description', 'programType', 'admin'];
@@ -78,6 +88,46 @@ class Validator {
 
         } catch (error) {
             console.log("Error in the Organizatio Update Validation :(");
+            console.log(error);
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                message: error.message,
+                success: false,
+                err: "Server Error",
+                data: []
+            });
+        }
+    }
+
+    // User Validation
+
+    /*
+    * @use : Validation of user while creating user
+    * @author : Trivedi Darshan
+    */
+
+    async UserVerification(req, res, next) {
+        try {
+            const userSchema = Joi.object({
+                name: Joi.string().required(),
+                email: Joi.string().email().required(),
+                password: Joi.string().required().min(5),
+                dataOfBirth: Joi.date().optional(),
+                headline: Joi.string().required(),
+                phoneNumber: Joi.string().optional(),
+                colleges: Joi.object({
+                    college: Joi.string().required(),
+                    startYear: Joi.number().required(),
+                    graduationYear: Joi.number().required(),
+                }).required()
+            });
+
+            const userData = await userSchema.validateAsync(
+                req.body
+            );
+
+            next();
+        } catch (error) {
+            console.log("Error in the User Registor Validation :(");
             console.log(error);
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                 message: error.message,
