@@ -35,10 +35,12 @@ const userSchema = new mongoose.Schema({
                 ref: 'Organization'
             },
             startYear: {
-                type: Number
+                type: Number,
+                require: true
             },
             graduationYear: {
-                type: Number
+                type: Number,
+                require: true
             }
         }
     ]

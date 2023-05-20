@@ -1,5 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { UserRepository, OrganizationRepository } from '../repository/index.js'
+import user from '../model/user.js';
 
 var userRepository = new UserRepository();
 
@@ -53,9 +54,11 @@ class UserService {
 
     async getUser(id) {
         try {
-
+            const userData = await userRepository.get(id);
+            return userData;
         } catch (error) {
-
+            console.log("Something went wrong while getting User Profile in Service Layer");
+            throw error;
         }
     }
 

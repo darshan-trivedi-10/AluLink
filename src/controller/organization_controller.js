@@ -29,7 +29,7 @@ class OrganizationController {
 
     async getOrganizationProfile(req, res) {
         try {
-            const response = await organizationService.getOrganizationProfile(req.body.id);
+            const response = await organizationService.getOrganizationProfile({_id : req.params.id});
             return res.status(StatusCodes.OK).json({
                 message: "Success",
                 data: response,

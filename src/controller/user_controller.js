@@ -27,7 +27,24 @@ class UserController {
     }
 
     async getUser(req, res) {
-
+        try {
+            const response = await userService.getUser({_id : req.params.id});
+            return res.status(StatusCodes.OK).json({
+                message: "User Fetch Succesfully",
+                data: response,
+                success: true,
+                error: {}
+            });
+        } catch (error) {
+            console.log("Error in getting User Controller");
+            console.log(error);
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                message: error.message,
+                data: {},
+                success: false,
+                error: error
+            });
+        }
     }
 
     async updateUser(req, res) {
