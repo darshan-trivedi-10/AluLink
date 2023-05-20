@@ -4,7 +4,7 @@
 
 ### Register Organization
 
-- URL: /organizations
+- URL: ` /organizations `
 - Method: POST
 - Description: Creates a new organization.
 - Request Body:
@@ -25,7 +25,7 @@
 - Response: Newly created organization object.
 
 ### Get Organization Profile
-- URL: /organizations/:id
+- URL: ` /organizations/:id `
 - Method: GET
 - Description: Retrieves the profile of a specific organization.
 - URL Parameters:
@@ -34,7 +34,7 @@
 
 ### Update Organization Profile
 
-- URL: /organizations/update
+- URL: ` /organizations/update `
 - Method: PUT
 - Description: Updates the profile of an organization.
 - Request Body:
@@ -46,7 +46,7 @@
 
 ### Register User
 
-- URL: /user
+- URL: ` /user `
 - Method: POST
 - Description: Creates a new user.
 - Request Body:
@@ -64,7 +64,7 @@
 
 ### Get User
 
-- URL: /user/:id
+- URL:  ` /user/:id `
 - Method: GET
 - Description: Retrieves the profile of a specific user.
 - URL Parameters:
@@ -73,7 +73,7 @@
 
 ### Update User
 
-- URL: /user/update
+- URL: ` /user/update `
 - Method: PUT
 - Description: Updates the profile of a user.
 - Request Body:
