@@ -67,14 +67,12 @@ class Validator {
                             } else {
                                 return res.status(StatusCodes.BAD_REQUEST).json({
                                     message: `Updating the '${adminKey}' property in the 'admin' object is not allowed`,
-                                    success: false
+                                    success: false,
+                                    err: "Client Error",
+                                    data: []
                                 });
                             }
                         }
-                        updates.admin = adminUpdates;
-                    } else {
-                        // Handle modifications to top-level properties
-                        updates[key] = req.body.data[key];
                     }
                 } else {
                     return res.status(StatusCodes.BAD_REQUEST).json({
@@ -87,7 +85,7 @@ class Validator {
             next();
 
         } catch (error) {
-            console.log("Error in the Organizatio Update Validation :(");
+            console.log("Error in the Organization Update Validation :(");
             console.log(error);
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                 message: error.message,
@@ -128,6 +126,39 @@ class Validator {
             next();
         } catch (error) {
             console.log("Error in the User Registor Validation :(");
+            console.log(error);
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                message: error.message,
+                success: false,
+                err: "Server Error",
+                data: []
+            });
+        }
+    }
+
+
+    /*
+    * @use : User Validation while updating organization details
+    * @author : Trivedi Darshan
+    */
+
+    async UserUpdateVerification(req, res, next) {
+        try {
+            const allowedProperties = ['name', 'email', 'dateOfBirth', 'headline', 'email', 'phoneNumber', 'colleges'];
+            for (const key in req.body.data) {
+                if (!allowedProperties.includes(key)) {
+                    return res.status(StatusCodes.BAD_REQUEST).json({
+                        message: `Updating the ${key} property is not allowed`,
+                        success: false,
+                        err: "Client Error",
+                        data: []
+                    });
+                }
+            }
+
+            next();
+        } catch (error) {
+            console.log("Error in the User Update Validation :(");
             console.log(error);
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                 message: error.message,

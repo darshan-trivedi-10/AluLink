@@ -1,9 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
-import organization from '../model/organization.js';
 import { UserRepository, OrganizationRepository } from '../repository/index.js'
 
 var userRepository = new UserRepository();
-var organizationRepository = new OrganizationRepository();
 
 class UserService {
     async registerUser(data) {
@@ -33,7 +31,7 @@ class UserService {
                     message: "Invalid college ID format",
                     data: {},
                     success: false,
-                    statusCode: 400 // Use the appropriate status code here
+                    statusCode: StatusCodes.CONFLICT
                 };
                 throw customError;
             }

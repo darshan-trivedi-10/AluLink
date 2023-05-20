@@ -17,8 +17,8 @@ router.get('/organizations/:id', organizationController.getOrganizationProfile);
 router.put('/organizations/update', validator.OrganizationUpdateVerification, organizationController.updateOrganizationProfile);
 
 // User 
-router.post('/user',validator.UserVerification, userController.registerUser);
+router.post('/user', validator.UserVerification, userController.registerUser);
 router.get('/user/id', userController.getUser);
-router.put('/user/update', userController.updateUser);
+router.put('/user/update', validator.UserUpdateVerification, userController.updateUser);
 
 export default router;
