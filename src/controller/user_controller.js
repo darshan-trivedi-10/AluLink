@@ -31,7 +31,24 @@ class UserController {
     }
 
     async updateUser(req, res) {
+        try {
+            const response = await userService.updateUser(req.body.id, req.body.data);
+            return res.status(StatusCodes.OK).json({
+                message: "User Profile Updated Successfully",
+                data: response,
+                success: true
+            });
 
+        } catch (error) {
+            console.log("Error in updating User - Controller");
+            console.log(error);
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                message: "Error in Updating organization Profile",
+                data: {},
+                success: false,
+                error: error.message
+            });
+        }
     }
 }
 

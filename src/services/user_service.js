@@ -43,9 +43,11 @@ class UserService {
 
     async updateUser(id, data) {
         try {
-
+            const userData = await userRepository.update(id, data);
+            return userData;
         } catch (error) {
-
+            console.log("Something went wrong while updating user profile - Service Layer");
+            throw error;
         }
     }
 

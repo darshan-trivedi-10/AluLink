@@ -38,7 +38,7 @@ class Validator {
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                 message: error.message,
                 success: false,
-                err: "Server Error",
+                error: "Server Error",
                 data: []
             });
         }
@@ -68,7 +68,7 @@ class Validator {
                                 return res.status(StatusCodes.BAD_REQUEST).json({
                                     message: `Updating the '${adminKey}' property in the 'admin' object is not allowed`,
                                     success: false,
-                                    err: "Client Error",
+                                    error: "Client Error",
                                     data: []
                                 });
                             }
@@ -82,6 +82,15 @@ class Validator {
                 }
             }
 
+            if (!req.body.id) {
+                return res.status(StatusCodes.BAD_REQUEST).json({
+                    message: "Organization ID is required for update",
+                    success: false,
+                    error: "Client Error",
+                    data: []
+                });
+            }
+
             next();
 
         } catch (error) {
@@ -90,7 +99,7 @@ class Validator {
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                 message: error.message,
                 success: false,
-                err: "Server Error",
+                error: "Server Error",
                 data: []
             });
         }
@@ -130,7 +139,7 @@ class Validator {
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                 message: error.message,
                 success: false,
-                err: "Server Error",
+                error: "Server Error",
                 data: []
             });
         }
@@ -150,10 +159,19 @@ class Validator {
                     return res.status(StatusCodes.BAD_REQUEST).json({
                         message: `Updating the ${key} property is not allowed`,
                         success: false,
-                        err: "Client Error",
+                        error: "Client Error",
                         data: []
                     });
                 }
+            }
+
+            if (!req.body.id) {
+                return res.status(StatusCodes.BAD_REQUEST).json({
+                    message: "User ID is required for update",
+                    success: false,
+                    error: "Client Error",
+                    data: []
+                });
             }
 
             next();
@@ -163,7 +181,7 @@ class Validator {
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                 message: error.message,
                 success: false,
-                err: "Server Error",
+                error: "Server Error",
                 data: []
             });
         }
