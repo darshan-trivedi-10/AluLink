@@ -28,9 +28,20 @@ class Validator {
                     phone: Joi.string().required(),
                 }).required(),
             });
-            const organizationData = await organizationSchema.validateAsync(
-                req.body
-            );
+
+            const { error } = organizationSchema.validate(req.body);
+            if (error) {
+                return res.status(StatusCodes.BAD_REQUEST).json({
+                    message: error.message,
+                    success: false,
+                    error: "Client Error",
+                    data: []
+                });
+            }
+
+            // const organizationData = await organizationSchema.validateAsync(
+            //     req.body
+            // );
             next();
         } catch (error) {
             console.log("Error in the Validation :(");

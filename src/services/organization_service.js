@@ -1,5 +1,5 @@
 import { OrganizationRepository } from "../repository/index.js";
-
+import { generateToken } from '../utills/token.js'
 var organizationRepository = new OrganizationRepository();
 
 class OrganizationService {
@@ -15,7 +15,12 @@ class OrganizationService {
                 throw error;
             }
             const response = await organizationRepository.create(data);
-            return response;
+            const token = generateToken(response._id);
+
+            return {
+                user: response,
+                token: token
+            };
         } catch (error) {
             console.log("Something went wrong while creating Organization Profile in Service Layer");
             throw error;

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import bcrypt from 'bcrypt';
 
 const organizationSchema = new mongoose.Schema({
   name: {
@@ -48,6 +48,20 @@ const organizationSchema = new mongoose.Schema({
     phone: { type: String, required: true },
   }
 })
+
+organizationSchema.pre("save", async function (next) {
+  try {
+    // Hash the password only if it is modified or newly created
+    if (this.isModified("admin.password") || this.isNew) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(this.admin.password, salt);
+      this.admin.password = hashedPassword;
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 
 
