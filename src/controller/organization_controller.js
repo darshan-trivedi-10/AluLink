@@ -29,7 +29,7 @@ class OrganizationController {
 
     async getOrganizationProfile(req, res) {
         try {
-            const response = await organizationService.getOrganizationProfile({_id : req.params.id});
+            const response = await organizationService.getOrganizationProfile({ _id: req.params.id });
             return res.status(StatusCodes.OK).json({
                 message: "Success",
                 data: response,
@@ -51,7 +51,6 @@ class OrganizationController {
 
     async updateOrganizationProfile(req, res) {
         try {
-
             const response = await organizationService.updateOrganizationProfile(req.body.id, req.body.data);
             return res.status(StatusCodes.OK).json({
                 message: "Organization profile updated successfully",
@@ -69,6 +68,33 @@ class OrganizationController {
             });
         }
     }
+
+    async getOrganizationList(req, res) {
+        try {
+
+            const { query } = req.query;
+            console.log(query);
+            const organizationList = await organizationService.getOrganizationList(query);
+            return res.status(StatusCodes.OK).json({
+                message: "Succesfully Fetched Organization List",
+                data: organizationList,
+                success: true,
+                error: {}
+            });
+
+        } catch (error) {
+            console.log("Error in getting Organization");
+            console.log(error);
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                message: "Error in getting organization",
+                data: {},
+                success: false,
+                error: error.message
+            });
+        }
+    }
+
+
 }
 
 export default OrganizationController;

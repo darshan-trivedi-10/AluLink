@@ -47,6 +47,17 @@ class OrganizationService {
             throw error;
         }
     }
+
+    async getOrganizationList(text) {
+        try {
+            const organizationList = await organizationRepository.getOrganizationList(text);
+            return organizationList;
+        } catch (error) {
+            console.log("Something went wrong while getting Organization list in Service Layer");
+            throw error;
+        }
+    }
+
 }
 
 export default OrganizationService;

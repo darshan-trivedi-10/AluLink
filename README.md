@@ -42,6 +42,12 @@
     - data (object): Updated organization data. Only the allowed properties can be modified.
 - Response: Updated organization object.
 
+### Search Organization List
+- URL : ` /organizations/search?query=searchValue`
+- Method: Get
+- Description : Gives the Organization List
+- Response : Organization List With (_id , name & established)
+
 ## User Routes
 
 ### Register User
