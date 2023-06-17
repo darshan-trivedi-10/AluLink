@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { UserRepository, OrganizationRepository } from '../repository/index.js'
-import user from '../model/user.js';
+import { generateToken } from '../utills/token.js';
 
 var userRepository = new UserRepository();
 
@@ -19,6 +19,12 @@ class UserService {
             }
 
             const response = await userRepository.create(data);
+            const token = generateToken(response._id);
+
+            return {
+                user: response,
+                token: token
+            };
             return response;
 
         } catch (error) {

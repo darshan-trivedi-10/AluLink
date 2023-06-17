@@ -139,6 +139,19 @@ class Validator {
                 }).required()
             });
 
+            /*
+            {
+                "name": "Darshan Trivedi",
+                "phoneNumber": "9898363695",
+                "email": "trivedidarshan30@gmail.com",
+                "headline": "Jay Mataji",
+                "college": "647c984c764526c4c6dc8386",
+                "startYear": "2011",
+                "graductionYear": "2030",
+                "birthday": "2023-10-10"
+            }
+            */
+
             const userData = await userSchema.validateAsync(
                 req.body
             );
