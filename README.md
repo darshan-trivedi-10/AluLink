@@ -88,3 +88,14 @@
 - Response: Updated user object.
 
 Please note that the allowed properties and validation rules mentioned in the documentation are based on the provided code snippets. You can customize them as per your specific requirements.
+
+## Post Routes
+
+- URL : ` /post/create`
+- Method : POST
+- Description : Create a new Post
+- Request Body :
+    - user Id
+    - organization id
+    - description
+    - image [optional]

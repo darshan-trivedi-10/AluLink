@@ -3,10 +3,12 @@ import express from 'express';
 
 const router = express.Router();
 import Validator from '../../middleware/validator.js';
-import { OrganizationController, UserController } from '../../controller/index.js';
+import { OrganizationController, UserController, PostController } from '../../controller/index.js';
 
 var organizationController = new OrganizationController();
-const userController = new UserController();
+var userController = new UserController();
+var postControllet = new PostController();
+
 var validator = new Validator();
 
 /* Auth */
@@ -26,5 +28,7 @@ router.get('/user/:id', userController.getUser);
 router.put('/user/update', validator.UserUpdateVerification, userController.updateUser);
 
 
+// Post 
+router.post('/post/create', postControllet.createPost);
 
 export default router;
