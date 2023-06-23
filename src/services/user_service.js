@@ -1,6 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { UserRepository, OrganizationRepository } from '../repository/index.js'
 import { generateToken } from '../utills/token.js';
+import user from '../model/user.js';
 
 var userRepository = new UserRepository();
 
@@ -64,6 +65,21 @@ class UserService {
             return userData;
         } catch (error) {
             console.log("Something went wrong while getting User Profile in Service Layer");
+            throw error;
+        }
+    }
+
+    async unverifiedUser(id) {
+        try {
+            // 'colleges.college': '6491aac8dc56880d3f916276'
+            const userData = await userRepository.get({
+                isVerified: false,
+                'colleges.college': id
+            });
+
+            return userData;
+        } catch (error) {
+            console.log("Something went wrong while getting un verified User Profile in Service Layer");
             throw error;
         }
     }

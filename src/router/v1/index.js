@@ -24,8 +24,9 @@ router.put('/organizations/update', validator.OrganizationUpdateVerification, or
 
 // User 
 router.post('/user', validator.UserVerification, userController.registerUser);
-router.get('/user/:id', userController.getUser);
 router.put('/user/update', validator.UserUpdateVerification, userController.updateUser);
+router.post('/user/unverified', userController.unverifiedUser);
+router.get('/user/:id', userController.getUser);
 
 
 // Post 

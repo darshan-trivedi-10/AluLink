@@ -28,7 +28,7 @@ class UserController {
 
     async getUser(req, res) {
         try {
-            const response = await userService.getUser({_id : req.params.id});
+            const response = await userService.getUser({ _id: req.params.id });
             return res.status(StatusCodes.OK).json({
                 message: "User Fetch Succesfully",
                 data: response,
@@ -61,6 +61,27 @@ class UserController {
             console.log(error);
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                 message: "Error in Updating organization Profile",
+                data: {},
+                success: false,
+                error: error.message
+            });
+        }
+    }
+
+    async unverifiedUser(req, res) {
+        try {
+            const response = await userService.unverifiedUser(req.body.id);
+            return res.status(StatusCodes.OK).json({
+                message: "Successfully getting un verified user",
+                data: response,
+                success: true
+            });
+
+        } catch (error) {
+            console.log("Error in getting un verified User - Controller");
+            console.log(error);
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                message: "Error in un verified user Profile",
                 data: {},
                 success: false,
                 error: error.message

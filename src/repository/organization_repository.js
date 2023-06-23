@@ -24,7 +24,6 @@ class OrganizationRepository extends CrudRepository {
         }
     }
 
-
 }
 
 export default OrganizationRepository;

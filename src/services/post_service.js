@@ -9,11 +9,12 @@ class PostService {
         try {
 
             const isVerified = await userRepository.get({
-                "_id": data._id,
+                "_id": data.owner,
                 isVerified: true
             })
 
-            if (isVerified && isVerified.colleges.college != data.organization) {
+
+            if (!isVerified || !isVerified.colleges.college != data.organization) {
                 const error = new Error("You're not a Verified User");
                 error.statusCode = StatusCodes.UNAUTHORIZED;
                 throw error;
@@ -39,7 +40,7 @@ class PostService {
                 throw customError;
             }
 
-            console.log("Something went wrong while creating user Profile in Service Layer");
+            console.log("Something went wrong while creating post in Service Layer");
             throw error;
         }
     }
