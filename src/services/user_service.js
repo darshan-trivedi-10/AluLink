@@ -26,7 +26,6 @@ class UserService {
                 user: response,
                 token: token
             };
-            return response;
 
         } catch (error) {
 
@@ -72,7 +71,7 @@ class UserService {
     async unverifiedUser(id) {
         try {
             // 'colleges.college': '6491aac8dc56880d3f916276'
-            const userData = await userRepository.get({
+            const userData = await userRepository.getUnVerifed({
                 isVerified: false,
                 'colleges.college': id
             });
@@ -84,8 +83,28 @@ class UserService {
         }
     }
 
+    async verifyUser(id) {
+        try {
+            const userData = await userRepository.update(id, { isVerified: true });
+            console.log(userData);
+            return { id: id, data: true };
+
+        } catch (error) {
+            console.log("Something went wrong while verifing User Profile in Service Layer");
+            throw error;
+        }
+    }
+
+    async getAllUser(id, page) {
+        try {
+            const user = await userRepository.getAllUser(id, page);
+            return user;
+        } catch (error) {
+            console.log("Something went wrong while fetching all User in Service Layer");
+            throw error;
+        }
+    }
+
 }
 
 export default UserService;
-
-

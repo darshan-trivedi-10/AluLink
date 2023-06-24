@@ -89,6 +89,20 @@
 
 Please note that the allowed properties and validation rules mentioned in the documentation are based on the provided code snippets. You can customize them as per your specific requirements.
 
+### Un-Verified User
+- URL : ` /user/unverified`
+- Method : POST
+- Description : Get un-verified user
+- Request Body:
+    - id : organization id
+
+### Verify The User
+- URL : `/user/verify`
+- Method : POST
+- Description : To verify the user
+- Request Body : 
+    - id : User ID
+
 ## Post Routes
 
 - URL : ` /post/create`

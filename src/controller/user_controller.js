@@ -1,5 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import { UserService } from "../services/index.js";
+import user from "../model/user.js";
 
 var userService = new UserService();
 
@@ -82,6 +83,49 @@ class UserController {
             console.log(error);
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
                 message: "Error in un verified user Profile",
+                data: {},
+                success: false,
+                error: error.message
+            });
+        }
+    }
+
+    async verifyUser(req, res) {
+        try {
+            const id = req.body.id;
+            const response = await userService.verifyUser(id);
+            return res.status(StatusCodes.OK).json({
+                message: "Successfully verified user",
+                data: response,
+                success: true
+            });
+
+        } catch (error) {
+            console.log("Error while verifying User - Controller");
+            console.log(error);
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                message: "Error in un verified user Profile",
+                data: {},
+                success: false,
+                error: error.message
+            });
+        }
+    }
+
+    async getAllUser(req, res) {
+        try {
+            const response = await userService.getAllUser(req.body.id, req.body.page);
+            return res.status(StatusCodes.OK).json({
+                message: "Successfully fetched user",
+                data: response,
+                success: true
+            });
+
+        } catch (error) {
+            console.log("Error while getting all User - Controller");
+            console.log(error);
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                message: "Error while getting all User",
                 data: {},
                 success: false,
                 error: error.message
