@@ -1,5 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import { PostRepository, UserRepository } from "../repository/index.js";
+import post from "../model/posts.js";
 
 var postRepository = new PostRepository();
 var userRepository = new UserRepository();
@@ -10,18 +11,16 @@ class PostService {
 
             const isVerified = await userRepository.get({
                 "_id": data.owner,
-                isVerified: true
+                "isVerified": true
             })
 
-
-            if (!isVerified || !isVerified.colleges.college != data.organization) {
+            if (!isVerified || !(isVerified.colleges[0].college !== data.organization)) {
                 const error = new Error("You're not a Verified User");
                 error.statusCode = StatusCodes.UNAUTHORIZED;
                 throw error;
             }
 
             const response = await postRepository.create(data);
-
             return response;
 
         } catch (error) {
@@ -44,6 +43,19 @@ class PostService {
             throw error;
         }
     }
+
+    async getAllPost(id, page) {
+        try {
+            const posts = await postRepository.getAllPost(id, page);
+            return posts;
+        } catch (error) {
+            console.log("Something went wrong while fetching all post in Service Layer");
+            throw error;
+        }
+
+    }
+
+
 }
 
 export default PostService;

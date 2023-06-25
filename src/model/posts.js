@@ -1,6 +1,10 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
+    ownerName: {
+        type: String,
+        required: true
+    },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
@@ -19,11 +23,20 @@ const postSchema = new mongoose.Schema({
     like: {
         type: Number
     },
+    companyName: {
+        type: String
+    },
+    jobTitle: {
+        type: String
+    },
+    jobLink: {
+        type: String
+    },
     comment: [
         {
             userId: {
                 type: mongoose.Schema.Types.ObjectId,
-            ref: 'user'
+                ref: 'user'
             },
             createdAt: {
                 type: Date,

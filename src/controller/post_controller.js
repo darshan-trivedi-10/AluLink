@@ -25,6 +25,32 @@ class PostController {
             });
         }
     }
+
+    async getAllPost(req, res) {
+        try {
+            const response = await postService.getAllPost(req.body.id, req.body.page);
+            return res.status(StatusCodes.OK).json({
+                message: "Posts fetched SuccesFully",
+                data: response,
+                success: true,
+                err: {}
+            })
+
+        } catch (error) {
+            console.log("Error in while fetching Posts in Controller");
+            console.log(error);
+            return res.status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
+                message: error.message,
+                data: {},
+                success: false,
+                err: error
+            });
+        }
+    }
+
+
+
+
 };
 
 export default PostController;

@@ -83,12 +83,18 @@ class UserService {
         }
     }
 
-    async verifyUser(id) {
+    async verifyUser(userData) {
         try {
-            const userData = await userRepository.update(id, { isVerified: true });
-            console.log(userData);
-            return { id: id, data: true };
-
+            let id = userData.id;
+            if (userData.verify == true) {
+                const userData = await userRepository.update(id, { isVerified: true });
+                console.log(userData);
+                return { id: id, data: true };
+            } else {
+                console.log("Hello");
+                const userData = await userRepository.destory(id);
+                return { id: id, data: true };
+            }
         } catch (error) {
             console.log("Something went wrong while verifing User Profile in Service Layer");
             throw error;

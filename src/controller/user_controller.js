@@ -92,10 +92,9 @@ class UserController {
 
     async verifyUser(req, res) {
         try {
-            const id = req.body.id;
-            const response = await userService.verifyUser(id);
+            const response = await userService.verifyUser(req.body);
             return res.status(StatusCodes.OK).json({
-                message: "Successfully verified user",
+                message: "Successfully changes user status",
                 data: response,
                 success: true
             });

@@ -33,9 +33,6 @@ class UserRepository extends CrudRepository {
             throw error;
         }
     }
-
-
-
 }
 
 export default UserRepository;

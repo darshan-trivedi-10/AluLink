@@ -7,7 +7,7 @@ import { OrganizationController, UserController, PostController } from '../../co
 
 var organizationController = new OrganizationController();
 var userController = new UserController();
-var postControllet = new PostController();
+var postController = new PostController();
 
 var validator = new Validator();
 
@@ -32,6 +32,7 @@ router.get('/user/:id', userController.getUser);
 
 
 // Post 
-router.post('/post/create', postControllet.createPost);
+router.post('/post/create', postController.createPost);
+router.post('/post/all', postController.getAllPost);
 
 export default router;
