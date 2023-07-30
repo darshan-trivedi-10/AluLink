@@ -85,13 +85,13 @@ class UserController {
         }
 
         const fileName = req.file.filename;
-        const response = await userService.updateUser(req.body.id, {
+        const user = await userService.updateUser(req.body.id, {
           profile: fileName,
         });
 
         return res.status(StatusCodes.OK).json({
           message: "Profile Images Uploaded Successfully",
-          data: response,
+          data: {user},
           success: true,
         });
       });
