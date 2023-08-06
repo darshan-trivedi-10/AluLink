@@ -16,10 +16,10 @@ app.use(express.static("public"));
 app.use("/images", express.static("images"));
 
 app.use("/api", apiRoutes);
+await connect();
 
 app.listen(5000, async () => {
-  console.log("Server Started :)");
-  await connect();
+  console.log("Server Started :)"); 
 });
 
 app.get("/", (req, res) => {
