@@ -9,10 +9,6 @@ const postSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-    ownerImg : {
-        type: mongoose.Schema.Types.profile,
-        ref : 'user'
-    },
     organization: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Organization'

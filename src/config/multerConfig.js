@@ -11,7 +11,9 @@ const dest = path.join(__dirname, '../../public/images');
 const storage = multer.diskStorage({
   destination: dest,
   filename: (req, file, cb) => {
-    const uniqueFilename = `${Date.now()}-${path.extname(file.originalname)}`;
+    const fileExtension = path.extname(file.originalname);
+    console.log(file.originalname);
+    const uniqueFilename = `${file.originalname}`;
     cb(null, uniqueFilename);
   },
 });
